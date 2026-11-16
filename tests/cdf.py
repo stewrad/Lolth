@@ -1,8 +1,8 @@
 import numpy as np
 import pandas as pd
 
-PHI_COLUMNS = ("E1", "E2", "AA", "P1")
-THETA_COLUMNS = ("Theta", "theta", "A1", "Angle", "angle")
+PHI_COLUMNS = ("E1", "E2", "E", "El")
+THETA_COLUMNS = ("Az", "A1")
 DB_COLUMNS = ("PdB", "P_dB", "dB", "Gain_dB", "gain_db")
 
 
@@ -126,7 +126,7 @@ def compare_db(
     if not frequencies or not phis:
         return pd.DataFrame(
             columns=[
-                "Freq", "E1", "Theta",
+                "Freq", "Phi", "Theta",
                 "first_db", "second_db", "delta_db"
             ]
         )
@@ -143,7 +143,7 @@ def compare_db(
     first = apply_filters(first)
     second = apply_filters(second)
 
-    keys = ["Freq", "E1", "Theta"]
+    keys = ["Freq", "Phi", "Theta"]
 
     # Pair repeated measurements one-to-one by occurrence
     # rather than generating a many-to-many cross-product.
@@ -176,7 +176,7 @@ def compare_db(
 
     return merged[
         [
-            "Freq", "E1", "Theta",
+            "Freq", "Phi", "Theta",
             "first_db", "second_db", "delta_db"
         ]
     ]

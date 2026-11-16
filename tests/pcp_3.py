@@ -654,7 +654,7 @@ class MainWindow(QMainWindow):
 
         return flat[
             flat["Freq"].isin(frequencies)
-            & flat["Phi"].isin(phis)
+            & flat["E1"].isin(phis)
         ].copy()
 
     # ==================================================
@@ -1043,7 +1043,7 @@ class MainWindow(QMainWindow):
         summary = []
 
         for (freq, phi), subset in paired.groupby(
-            ["Freq", "Phi"],
+            ["Freq", "E1"],
             sort=True,
         ):
 
